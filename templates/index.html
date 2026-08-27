@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}Khanh Mai Le | Electrical Engineering Portfolio{% endblock %}
+
+{% block content %}
+<section class="hero" id="top" aria-labelledby="hero-heading">
+  <div class="hero__grid">
+    <div class="hero__content">
+      <p class="eyebrow">Electrical Engineering Student</p>
+      <h1 id="hero-heading">Hi, I’m Khanh.</h1>
+      <p class="hero__lead">
+        I build embedded systems, electronic prototypes, and software tools
+        that connect hardware with real-world applications.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#projects">View My Projects</a>
+        {# Replace GITHUB_URL in app.py with your GitHub profile URL #}
+        <a class="btn btn--ghost" href="{{ github_url }}" rel="noopener noreferrer">GitHub</a>
+        {# Replace RESUME_FILENAME in app.py and place the PDF in static/documents/ #}
+        <a
+          class="btn btn--ghost"
+          href="{{ url_for('static', filename='documents/' + resume_filename) }}"
+          download
+        >Download Resume</a>
+      </div>
+      <p class="hero__location">Calgary, Alberta · Seeking co-op in Metro Vancouver</p>
+    </div>
+    <div class="hero__visual" aria-hidden="true">
+      <div class="hero__panel">
+        <span class="hero__panel-label">Signal path</span>
+        <div class="hero__circuit">
+          <span class="node node--a"></span>
+          <span class="trace trace--h"></span>
+          <span class="node node--b"></span>
+          <span class="trace trace--v"></span>
+          <span class="node node--c"></span>
+          <span class="trace trace--h2"></span>
+          <span class="node node--d"></span>
+        </div>
+        <p class="hero__panel-caption">Hardware · Firmware · Software</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section about" id="about" aria-labelledby="about-heading">
+  <div class="section__inner">
+    <p class="eyebrow">About</p>
+    <h2 id="about-heading">From schematic to working prototype.</h2>
+    <div class="about__copy">
+      <p>
+        I am an Electrical Engineering student at the University of Calgary
+        with experience in PCB design, embedded programming, motor control,
+        circuit prototyping, CAD, and AI-powered software development.
+      </p>
+      <p>
+        I enjoy turning ideas into functional prototypes — testing what fails,
+        troubleshooting problems, and improving systems through multiple design
+        iterations. I am currently seeking an 8–16 month electrical engineering
+        co-op beginning January 2027 in Metro Vancouver.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section projects" id="projects" aria-labelledby="projects-heading">
+  <div class="section__inner">
+    <p class="eyebrow">Selected work</p>
+    <h2 id="projects-heading">Engineering projects</h2>
+    <p class="section__intro">
+      Hardware builds, embedded firmware, and software systems that connect
+      devices to real users. Full documentation lives in the
+      <code>projects/</code> folder of this repository.
+    </p>
+
+    <div class="project-grid">
+      {% for project in projects %}
+      <article class="project-card">
+        <div class="project-card__media" aria-hidden="true">
+          <span class="image-placeholder">{{ project.image_placeholder }}</span>
+        </div>
+        <div class="project-card__body">
+          <p class="project-card__category">{{ project.category }}</p>
+          <h3 class="project-card__title">
+            <a href="{{ url_for('project_detail', slug=project.slug) }}">
+              {{ project.title }}
+            </a>
+          </h3>
+          <p class="project-card__summary">{{ project.summary }}</p>
+          <ul class="tag-list" aria-label="Technologies used">
+            {% for tech in project.technologies[:5] %}
+            <li>{{ tech }}</li>
+            {% endfor %}
+          </ul>
+          <a
+            class="text-link"
+            href="{{ url_for('project_detail', slug=project.slug) }}"
+            aria-label="View details for {{ project.title }}"
+          >View project</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section skills" id="skills" aria-labelledby="skills-heading">
+  <div class="section__inner">
+    <p class="eyebrow">Capabilities</p>
+    <h2 id="skills-heading">Technical skills</h2>
+    <p class="section__intro">
+      Tools and techniques I use across embedded hardware, electronics, and software.
+    </p>
+
+    <div class="skills-grid">
+      {% for category, items in skills.items() %}
+      <div class="skill-group">
+        <h3 class="skill-group__title">{{ category }}</h3>
+        <ul class="skill-group__list">
+          {% for item in items %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact" aria-labelledby="contact-heading">
+  <div class="section__inner contact__inner">
+    <p class="eyebrow">Contact</p>
+    <h2 id="contact-heading">Let’s build something useful.</h2>
+    <p class="contact__text">
+      I am currently looking for an 8–16 month electrical engineering co-op
+      beginning January 2027 in Metro Vancouver.
+    </p>
+    <div class="contact__actions">
+      <a class="btn btn--primary" href="mailto:sarahlebics@gmail.com">Email Me</a>
+      <a class="btn btn--ghost" href="{{ linkedin_url }}" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn btn--ghost" href="{{ github_url }}" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

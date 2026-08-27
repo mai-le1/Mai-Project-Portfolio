@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block meta_description %}Khanh Mai Le — Electrical Engineering student portfolio. Embedded systems, PCB design, motor control, and AI software. Seeking co-op opportunities in Metro Vancouver.{% endblock %}">
+  <title>{% block title %}Khanh Mai Le | Electrical Engineering Portfolio{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__logo" href="{{ url_for('index') }}#top" aria-label="Khanh Mai Le home">KML</a>
+
+      <button
+        class="nav__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        id="nav-toggle"
+      >
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+        <span class="nav__toggle-label">Menu</span>
+      </button>
+
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="{{ url_for('index') }}#about">About</a></li>
+        <li><a href="{{ url_for('index') }}#projects">Projects</a></li>
+        <li><a href="{{ url_for('index') }}#skills">Skills</a></li>
+        <li><a href="{{ url_for('index') }}#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <p class="footer__brand">KML — Khanh Mai Le</p>
+      <p class="footer__meta">Electrical Engineering Student · Calgary, Alberta</p>
+      <p class="footer__links">
+        <a href="mailto:sarahlebics@gmail.com">Email</a>
+        <a href="{{ linkedin_url }}" rel="noopener noreferrer">LinkedIn</a>
+        <a href="{{ github_url }}" rel="noopener noreferrer">GitHub</a>
+      </p>
+      <p class="footer__copy">&copy; 2026 Khanh Mai Le</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById("nav-toggle");
+      var menu = document.getElementById("nav-menu");
+      if (!toggle || !menu) return;
+
+      toggle.addEventListener("click", function () {
+        var open = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!open));
+        menu.classList.toggle("is-open", !open);
+      });
+
+      menu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          toggle.setAttribute("aria-expanded", "false");
+          menu.classList.remove("is-open");
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

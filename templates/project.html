@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} | Khanh Mai Le{% endblock %}
+
+{% block meta_description %}{{ project.summary }}{% endblock %}
+
+{% block content %}
+<article class="project-detail">
+  <div class="section__inner project-detail__inner">
+    <p class="project-detail__back">
+      <a href="{{ url_for('index') }}#projects" aria-label="Back to projects section">
+        ← Back to projects
+      </a>
+    </p>
+
+    <header class="project-detail__header">
+      <p class="eyebrow">{{ project.category }}</p>
+      <h1>{{ project.title }}</h1>
+      <p class="project-detail__summary">{{ project.summary }}</p>
+      <p class="project-detail__status"><span>Status:</span> {{ project.status }}</p>
+    </header>
+
+    {# Replace this placeholder with an <img> when you add a real image file. #}
+    <div class="project-detail__media" role="img" aria-label="{{ project.image_placeholder }}">
+      <span class="image-placeholder image-placeholder--large">
+        {{ project.image_placeholder }}
+      </span>
+    </div>
+
+    <section class="project-detail__block" aria-labelledby="tech-heading">
+      <h2 id="tech-heading">Technologies</h2>
+      <ul class="tag-list tag-list--lg" aria-label="Project technologies">
+        {% for tech in project.technologies %}
+        <li>{{ tech }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="project-detail__block" aria-labelledby="overview-heading">
+      <h2 id="overview-heading">Overview</h2>
+      <p>{{ project.overview }}</p>
+    </section>
+
+    <section class="project-detail__block" aria-labelledby="contributions-heading">
+      <h2 id="contributions-heading">My contributions</h2>
+      <ul class="bullet-list">
+        {% for item in project.contributions %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="project-detail__block" aria-labelledby="challenges-heading">
+      <h2 id="challenges-heading">Challenges and debugging</h2>
+      <p class="editable-note">{{ project.challenges }}</p>
+      <ul class="prompt-list" aria-label="Prompts for your debugging story">
+        <li>The problem</li>
+        <li>What I originally expected</li>
+        <li>How I tested it</li>
+        <li>What failed</li>
+        <li>What I changed</li>
+        <li>What I learned</li>
+      </ul>
+    </section>
+
+    <section class="project-detail__block" aria-labelledby="results-heading">
+      <h2 id="results-heading">Results</h2>
+      <p>{{ project.results }}</p>
+    </section>
+
+    <section class="project-detail__block" aria-labelledby="next-heading">
+      <h2 id="next-heading">Next steps</h2>
+      <p>{{ project.next_steps }}</p>
+    </section>
+
+    {% if project.github_repo %}
+    <p class="project-detail__repo">
+      <a
+        class="btn btn--ghost"
+        href="{{ project.github_repo }}"
+        rel="noopener noreferrer"
+        aria-label="GitHub repository for {{ project.title }}"
+      >View on GitHub</a>
+    </p>
+    {% endif %}
+  </div>
+</article>
+{% endblock %}
