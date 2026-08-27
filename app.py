@@ -10,9 +10,9 @@ app = Flask(__name__)
 # ---------------------------------------------------------------------------
 # PLACEHOLDER LINKS — replace these with your real URLs and filenames
 # ---------------------------------------------------------------------------
-GITHUB_URL = "YOUR_GITHUB_URL"  # e.g. "https://github.com/your-username"
-LINKEDIN_URL = "YOUR_LINKEDIN_URL"  # e.g. "https://www.linkedin.com/in/your-profile"
-RESUME_FILENAME = "YOUR_RESUME_FILENAME"  # e.g. "Khanh_Mai_Le_Resume.pdf"
+GITHUB_URL = "https://github.com/mai-le1"  # e.g. "https://github.com/your-username"
+LINKEDIN_URL = " linkedin.com/in/khanh-mai-le-a5984b388"  # e.g. "https://www.linkedin.com/in/your-profile"
+RESUME_FILENAME = "Khanh_Mai_Le_0827_Resume.pdf"  # e.g. "Khanh_Mai_Le_Resume.pdf"
 # ---------------------------------------------------------------------------
 
 # Featured projects shown on the portfolio homepage (main engineering builds).
@@ -70,20 +70,37 @@ PROJECTS = [
     },
     {
         "slug": "led-heart-pcb",
-        "title": "Programmable LED Heart PCB",
+        "title": "Heartbeat LED PCB",
         "category": "PCB Design / Electronics",
         "summary": (
-            "TODO: Add a short summary of the programmable LED heart PCB."
+            "A custom 5 V heart-shaped PCB with an ATtiny1616, two daisy-chained "
+            "74HC595 shift registers, and 16 LEDs running heartbeat firmware in C."
         ),
         "technologies": [
-            "TODO: Add technologies used",
+            "ATtiny1616",
+            "C",
+            "74HC595",
+            "KiCad",
+            "UPDI",
+            "Shift Registers",
+            "Software PWM",
         ],
         "overview": (
-            "TODO: Add project overview. See projects/led-heart-pcb/README.md "
-            "for the full documentation template."
+            "This custom heart-shaped PCB uses an ATtiny1616 to drive two "
+            "daisy-chained 74HC595 shift registers, controlling 16 LEDs with "
+            "only three GPIO pins (DATA, CLK, LATCH). Power enters through an "
+            "SS14 Schottky diode for reverse-polarity protection and a slide "
+            "switch for on/off control. Each LED has a 1 kΩ current-limiting "
+            "resistor. Firmware written in C sends 16-bit patterns to the "
+            "shift registers and uses software PWM to animate a realistic "
+            "double-pulse heartbeat."
         ),
         "contributions": [
-            "TODO: List your contributions.",
+            "Designed a heart-shaped PCB in KiCad with power protection, MCU, and LED driver sections.",
+            "Integrated ATtiny1616 with UPDI programming and two daisy-chained 74HC595 shift registers.",
+            "Controlled 16 LEDs from 3 GPIO pins using serial shift-register communication.",
+            "Wrote C firmware with software PWM for smooth heartbeat animation.",
+            "Implemented a double-pulse pattern: strong first beat, weaker second beat, and rest interval.",
         ],
         "challenges": (
             "Describe a key challenge here. Include: the problem, what you "
@@ -91,47 +108,57 @@ PROJECTS = [
             "changed, and what you learned."
         ),
         "results": (
-            "TODO: Add results once verified — do not invent measurements."
+            "Schematic and PCB layout are complete in KiCad. Firmware "
+            "implements shift-register control, software PWM brightness, and "
+            "a synchronized heartbeat animation loop."
         ),
         "next_steps": (
-            "TODO: Add next steps."
+            "Add assembled board photos, demo video, and documented test "
+            "results after fabrication."
         ),
-        "status": "TODO: Update status",
+        "status": "Completed",
         "image_placeholder": "Add PCB or assembled board image",
         "github_repo": "YOUR_PROJECT_GITHUB_URL",
         "docs_path": "projects/led-heart-pcb/README.md",
     },
     {
         "slug": "personal-drone",
-        "title": "Personal Quad-Motor Drone",
+        "title": "ESP32-Based Quadcopter Drone",
         "category": "Embedded Systems / Power Electronics",
         "summary": (
-            "A quad-motor drone prototype using an ESP32 and MOSFET-based "
-            "motor-driver circuits."
+            "A custom quadcopter using an ESP32, four MOSFET motor drivers, "
+            "MPU6050 stabilization, and LiPo charging with battery monitoring."
         ),
         "technologies": [
             "ESP32-WROOM",
             "C++",
             "PWM",
+            "MPU6050",
+            "I2C",
             "N-Channel MOSFETs",
-            "Flyback Diodes",
-            "716 Coreless Motors",
-            "Breadboarding",
+            "TP4056",
+            "KiCad",
             "Fusion 360",
         ],
         "overview": (
-            "I am developing a lightweight drone platform to learn motor "
-            "control, power electronics, embedded programming, hardware "
-            "debugging, and flight stabilization."
+            "This custom quadcopter uses an ESP32 to output PWM signals to "
+            "four N-channel MOSFET motor drivers, controlling brushed coreless "
+            "motors independently for lift and stabilization. An MPU6050 IMU "
+            "communicates over I2C so the ESP32 can estimate roll and pitch "
+            "angles and adjust motor speeds in real time. A single-cell 3.7 V "
+            "LiPo powers the motors directly while a regulated 3.3 V rail "
+            "supplies the ESP32 and sensors. A voltage divider feeds the "
+            "battery level to an ADC pin, and a TP4056 circuit handles USB "
+            "charging with status LEDs."
         ),
         "contributions": [
-            "Designed four N-channel MOSFET low-side motor-driver circuits.",
-            "Added flyback diodes, gate resistors, pull-down resistors, and filtering components.",
-            "Programmed PWM control for four coreless DC motors.",
-            "Tested simultaneous operation of all four motors.",
-            "Diagnosed motor, wiring, and power-supply issues.",
-            "Began designing a lightweight 3D-printed frame.",
-            "Planned future sensor-based stabilization and wireless control.",
+            "Built an ESP32-based drone control system with four independently controlled motor driver circuits.",
+            "Used PWM signals to control brushed coreless motor speed through N-channel MOSFETs.",
+            "Integrated an MPU6050 gyroscope/accelerometer for motion sensing and stabilization.",
+            "Designed a battery voltage divider circuit to monitor LiPo voltage safely through the ESP32 ADC.",
+            "Used a TP4056 charging circuit for single-cell LiPo battery charging.",
+            "Tested motor control, battery measurement, and IMU communication separately before full integration.",
+            "Developed firmware for motor control, sensor reading, and basic stabilization logic.",
         ],
         "challenges": (
             "Describe a key challenge here. Include: the problem, what you "
@@ -139,14 +166,16 @@ PROJECTS = [
             "changed, and what you learned."
         ),
         "results": (
-            "Project is in progress. Add results as milestones are reached — "
-            "without claiming flight performance that has not been measured."
+            "Motor PWM control, MPU6050 I2C communication, and ADC battery "
+            "monitoring were bench-tested individually before combining into "
+            "a stabilization firmware loop. PCB layout and schematic design "
+            "are complete in KiCad."
         ),
         "next_steps": (
-            "Complete the 3D-printed frame, add IMU-based stabilization, and "
-            "implement wireless control."
+            "Complete the 3D-printed frame, tune stabilization gains during "
+            "tethered testing, and add wireless control."
         ),
-        "status": "In progress.",
+        "status": "In progress",
         "image_placeholder": "Add drone circuit or frame image",
         "github_repo": "YOUR_PROJECT_GITHUB_URL",
         "docs_path": "projects/personal-drone/README.md",

@@ -26,8 +26,8 @@ I build embedded systems, electronic prototypes, and software tools that connect
 | Project | Category | Status | Documentation |
 |---------|----------|--------|---------------|
 | Autonomous Delivery System | Embedded Systems / Robotics | TODO: Update status | [README](projects/autonomous-delivery-system/README.md) |
-| Programmable LED Heart PCB | PCB Design / Electronics | TODO: Update status | [README](projects/led-heart-pcb/README.md) |
-| Personal Quad-Motor Drone | Embedded Systems / Power Electronics | TODO: Update status | [README](projects/personal-drone/README.md) |
+| Heartbeat LED PCB | PCB Design / Electronics | Completed | [README](projects/led-heart-pcb/README.md) |
+| ESP32-Based Quadcopter Drone | Embedded Systems / Power Electronics | In progress | [README](projects/personal-drone/README.md) |
 | Remote-Controlled Metal Detection Vehicle | Embedded Systems / Sensing | TODO: Update status | [README](projects/metal-detecting-remote-car/README.md) |
 
 ---
@@ -128,4 +128,4 @@ Copy `.env.example` to `.env` for any local secrets — never commit `.env`.
 | `/projects/<slug>` | Featured project detail page |
 | Unknown path / invalid slug | Custom 404 |
 
-Featured website projects: Autonomous Delivery System, Programmable LED Heart PCB, Personal Quad-Motor Drone, and Remote-Controlled Metal Detection Vehicle. Additional builds are documented under `projects/additional-projects/`.
+Featured website projects: Autonomous Delivery System, Heartbeat LED PCB, ESP32-Based Quadcopter Drone, and Remote-Controlled Metal Detection Vehicle. Additional builds are documented under `projects/additional-projects/`.
