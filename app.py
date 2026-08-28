@@ -185,32 +185,58 @@ PROJECTS = [
         "title": "Remote-Controlled Metal Detection Vehicle",
         "category": "Embedded Systems / Sensing",
         "summary": (
-            "TODO: Add a short summary of the remote-controlled metal "
-            "detection vehicle."
+            "A vintage-style RC car with rack-and-pinion steering, differential "
+            "drive, ESP-NOW dual-ESP32 control, ultrasonic sensing, and "
+            "continuity-based metal detection. ENEL 300 team project."
         ),
         "technologies": [
-            "TODO: Add technologies used",
+            "ESP32",
+            "ESP-NOW",
+            "C",
+            "HC-SR04",
+            "KiCad",
+            "SolidWorks",
+            "Servo Control",
+            "H-Bridge Motor Driver",
+            "I2C LCD",
         ],
         "overview": (
-            "TODO: Add project overview. See "
-            "projects/metal-detecting-remote-car/README.md for the full "
-            "documentation template."
+            "Built for ENEL 300 (Winter 2026), this remote-controlled vehicle "
+            "uses dual ESP32 boards linked by ESP-NOW: a driver remote with "
+            "steering-wheel potentiometers, drive buttons, and an LCD distance "
+            "display, and a car receiver controlling a servo-steered rack-and-"
+            "pinion front end and a differential rear-drive DC motor. An "
+            "HC-SR04 ultrasonic sensor reports front distance to the LCD. "
+            "Metal is detected via a continuity probe under the chassis after "
+            "an initial NE555 coil design proved unreliable. A custom KiCad PCB "
+            "integrates fuse-protected 12 V motor power, a buck converter, "
+            "and control electronics."
         ),
         "contributions": [
-            "TODO: List your contributions.",
+            "Designed and built all electrical systems for the vehicle as the team's electrical lead.",
+            "Designed and laid out the custom KiCad PCB integrating fuse-protected 12 V motor power, buck converter, motor driver, ESP32, ultrasonic sensor, and metal-detector circuits.",
+            "Implemented power-management architecture: 12 V Li-Ion motor rail, 5 V buck for ESP32, 3.3 V LDO for headlights, and 5 A fuse stall protection.",
+            "Developed the metal-detection subsystem, pivoting from an NE555 coil approach to reliable continuity-based ground probing.",
+            "Debugged and validated electrical bring-up on the custom PCB for motor drive, sensing, and control subsystems.",
         ],
         "challenges": (
-            "Describe a key challenge here. Include: the problem, what you "
-            "originally expected, how you tested it, what failed, what you "
-            "changed, and what you learned."
+            "The NE555-based inductive metal detector was unreliable, producing "
+            "only slight buzzer frequency changes near metal. The team pivoted "
+            "to continuity-based detection with probe wires under the chassis. "
+            "On incline testing, the car climbed successfully but showed reduced "
+            "speed and minor steering instability under load."
         ),
         "results": (
-            "TODO: Add results once verified — do not invent measurements."
+            "The vehicle drove smoothly on flat ground and climbed a ~21° "
+            "incline. Ultrasonic distance was displayed on the driver LCD, "
+            "metal plates triggered the continuity detector, and the 5 A fuse "
+            "protected control electronics during motor stall conditions."
         ),
         "next_steps": (
-            "TODO: Add next steps."
+            "Higher-torque motor for incline performance, stronger steering "
+            "servo for ramp stability, and improved inductive metal detection."
         ),
-        "status": "TODO: Update status",
+        "status": "Completed",
         "image_placeholder": "Add vehicle or metal-detector prototype image",
         "github_repo": "YOUR_PROJECT_GITHUB_URL",
         "docs_path": "projects/metal-detecting-remote-car/README.md",

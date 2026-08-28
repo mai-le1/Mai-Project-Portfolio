@@ -28,7 +28,7 @@ I build embedded systems, electronic prototypes, and software tools that connect
 | Autonomous Delivery System | Embedded Systems / Robotics | TODO: Update status | [README](projects/autonomous-delivery-system/README.md) |
 | Heartbeat LED PCB | PCB Design / Electronics | Completed | [README](projects/led-heart-pcb/README.md) |
 | ESP32-Based Quadcopter Drone | Embedded Systems / Power Electronics | In progress | [README](projects/personal-drone/README.md) |
-| Remote-Controlled Metal Detection Vehicle | Embedded Systems / Sensing | TODO: Update status | [README](projects/metal-detecting-remote-car/README.md) |
+| Remote-Controlled Metal Detection Vehicle | Embedded Systems / Sensing | Completed | [README](projects/metal-detecting-remote-car/README.md) |
 
 ---
 
