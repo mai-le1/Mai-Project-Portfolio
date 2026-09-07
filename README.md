@@ -1,6 +1,6 @@
 # Projects-Portfolio
 
-Personal engineering portfolio and project documentation monorepo for **Khanh Mai Le**.
+Personal engineering portfolio and project documentation monorepo for **Mai Le**.
 
 I am an Electrical Engineering student at the University of Calgary.
 
@@ -23,8 +23,8 @@ I am a third-year Electrical Engineering student who enjoys turning ideas into r
 
 ## Featured engineering projects
 
-| Project | Category | Status | Documentation |
-|---------|----------|--------|---------------|
+| Project | Category | Documentation |
+|---------|----------|---------------|
 | Autonomous Delivery System | Embedded Systems / Robotics | [README](projects/autonomous-delivery-system/README.md) |
 | Heartbeat LED PCB | PCB Design / Electronics | [README](projects/led-heart-pcb/README.md) |
 | ESP32-Based Quadcopter Drone | Embedded Systems / Power Electronics | [README](projects/personal-drone/README.md) |
@@ -34,10 +34,10 @@ I am a third-year Electrical Engineering student who enjoys turning ideas into r
 
 ## Additional projects
 
-| Project | Category | Status | Documentation |
-|---------|----------|--------|---------------|
-| Portable Garden | Electronics / Embedded Systems| [README](projects/additional-projects/portable-garden/README.md) |
-| Walkie-Talkie | Electronics / Communications | TODO: Update status | [README](projects/additional-projects/walkie-talkie/README.md) |
+| Project | Category | Documentation |
+|---------|----------|---------------|
+| Portable Garden | Electronics / Embedded Systems | [README](projects/additional-projects/portable-garden/README.md) |
+| Walkie-Talkie | Electronics / Communications | [README](projects/additional-projects/walkie-talkie/README.md) |
 | AI Booking and Customer Service Agent | AI and Software Development | [README](projects/additional-projects/ai-booking-agent/README.md) |
 
 ---
@@ -61,7 +61,6 @@ Projects-Portfolio/
     ├── metal-detecting-remote-car/   # Featured
     └── additional-projects/          # Secondary builds
         ├── portable-garden/
-        ├── autonomous-remote-car/
         ├── walkie-talkie/
         └── ai-booking-agent/
 ```

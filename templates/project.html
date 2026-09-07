@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ project.title }} | Khanh Mai Le{% endblock %}
+{% block title %}{{ project.title }} | Mai Le{% endblock %}
 
 {% block meta_description %}{{ project.summary }}{% endblock %}
 
@@ -20,12 +20,14 @@
       <p class="project-detail__status"><span>Status:</span> {{ project.status }}</p>
     </header>
 
-    {# Replace this placeholder with an <img> when you add a real image file. #}
-    <div class="project-detail__media" role="img" aria-label="{{ project.image_placeholder }}">
-      <span class="image-placeholder image-placeholder--large">
-        {{ project.image_placeholder }}
-      </span>
+    {% if project.image %}
+    <div class="project-detail__media">
+      <img
+        src="{{ url_for('static', filename='images/' + project.image) }}"
+        alt="{{ project.title }}"
+      >
     </div>
+    {% endif %}
 
     <section class="project-detail__block" aria-labelledby="tech-heading">
       <h2 id="tech-heading">Technologies</h2>
@@ -47,19 +49,6 @@
         {% for item in project.contributions %}
         <li>{{ item }}</li>
         {% endfor %}
-      </ul>
-    </section>
-
-    <section class="project-detail__block" aria-labelledby="challenges-heading">
-      <h2 id="challenges-heading">Challenges and debugging</h2>
-      <p class="editable-note">{{ project.challenges }}</p>
-      <ul class="prompt-list" aria-label="Prompts for your debugging story">
-        <li>The problem</li>
-        <li>What I originally expected</li>
-        <li>How I tested it</li>
-        <li>What failed</li>
-        <li>What I changed</li>
-        <li>What I learned</li>
       </ul>
     </section>
 

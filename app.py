@@ -1,5 +1,5 @@
 """
-Khanh Mai Le — Electrical Engineering Portfolio
+Mai Le — Electrical Engineering Portfolio
 Flask application serving homepage and dynamic project pages.
 """
 
@@ -11,7 +11,7 @@ app = Flask(__name__)
 # PLACEHOLDER LINKS — replace these with your real URLs and filenames
 # ---------------------------------------------------------------------------
 GITHUB_URL = "https://github.com/mai-le1"  # e.g. "https://github.com/your-username"
-LINKEDIN_URL = " linkedin.com/in/khanh-mai-le-a5984b388"  # e.g. "https://www.linkedin.com/in/your-profile"
+LINKEDIN_URL = "https://www.linkedin.com/in/khanh-mai-le-a5984b388"
 RESUME_FILENAME = "Khanh_Mai_Le_0827_Resume.pdf"  # e.g. "Khanh_Mai_Le_Resume.pdf"
 # ---------------------------------------------------------------------------
 
@@ -51,11 +51,6 @@ PROJECTS = [
             "Documented design changes, test results, and unresolved technical risks.",
             "Coordinated tasks and design decisions with a multidisciplinary team.",
         ],
-        "challenges": (
-            "Describe a key challenge here. Include: the problem, what you "
-            "originally expected, how you tested it, what failed, what you "
-            "changed, and what you learned."
-        ),
         "results": (
             "Completed university engineering project. Add concrete results "
             "here when ready — without inventing measurements."
@@ -64,7 +59,7 @@ PROJECTS = [
             "TODO: Add next steps for this project."
         ),
         "status": "TODO: Update status",
-        "image_placeholder": "Add PCB or prototype image",
+        "image": "autonomous_delivery.png",
         "github_repo": "YOUR_PROJECT_GITHUB_URL",
         "docs_path": "projects/autonomous-delivery-system/README.md",
     },
@@ -102,11 +97,6 @@ PROJECTS = [
             "Wrote C firmware with software PWM for smooth heartbeat animation.",
             "Implemented a double-pulse pattern: strong first beat, weaker second beat, and rest interval.",
         ],
-        "challenges": (
-            "Describe a key challenge here. Include: the problem, what you "
-            "originally expected, how you tested it, what failed, what you "
-            "changed, and what you learned."
-        ),
         "results": (
             "Schematic and PCB layout are complete in KiCad. Firmware "
             "implements shift-register control, software PWM brightness, and "
@@ -117,7 +107,7 @@ PROJECTS = [
             "results after fabrication."
         ),
         "status": "Completed",
-        "image_placeholder": "Add PCB or assembled board image",
+        "image": "pcb_3D.png",
         "github_repo": "YOUR_PROJECT_GITHUB_URL",
         "docs_path": "projects/led-heart-pcb/README.md",
     },
@@ -160,11 +150,6 @@ PROJECTS = [
             "Tested motor control, battery measurement, and IMU communication separately before full integration.",
             "Developed firmware for motor control, sensor reading, and basic stabilization logic.",
         ],
-        "challenges": (
-            "Describe a key challenge here. Include: the problem, what you "
-            "originally expected, how you tested it, what failed, what you "
-            "changed, and what you learned."
-        ),
         "results": (
             "Motor PWM control, MPU6050 I2C communication, and ADC battery "
             "monitoring were bench-tested individually before combining into "
@@ -176,7 +161,7 @@ PROJECTS = [
             "tethered testing, and add wireless control."
         ),
         "status": "In progress",
-        "image_placeholder": "Add drone circuit or frame image",
+        "image": "drone_pcb.png",
         "github_repo": "YOUR_PROJECT_GITHUB_URL",
         "docs_path": "projects/personal-drone/README.md",
     },
@@ -219,13 +204,6 @@ PROJECTS = [
             "Developed the metal-detection subsystem, pivoting from an NE555 coil approach to reliable continuity-based ground probing.",
             "Debugged and validated electrical bring-up on the custom PCB for motor drive, sensing, and control subsystems.",
         ],
-        "challenges": (
-            "The NE555-based inductive metal detector was unreliable, producing "
-            "only slight buzzer frequency changes near metal. The team pivoted "
-            "to continuity-based detection with probe wires under the chassis. "
-            "On incline testing, the car climbed successfully but showed reduced "
-            "speed and minor steering instability under load."
-        ),
         "results": (
             "The vehicle drove smoothly on flat ground and climbed a ~21° "
             "incline. Ultrasonic distance was displayed on the driver LCD, "
@@ -237,7 +215,7 @@ PROJECTS = [
             "servo for ramp stability, and improved inductive metal detection."
         ),
         "status": "Completed",
-        "image_placeholder": "Add vehicle or metal-detector prototype image",
+        "image": "remote_car.png",
         "github_repo": "YOUR_PROJECT_GITHUB_URL",
         "docs_path": "projects/metal-detecting-remote-car/README.md",
     },

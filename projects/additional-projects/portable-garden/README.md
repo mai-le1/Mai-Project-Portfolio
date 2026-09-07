@@ -1,209 +1,231 @@
 # Portable Garden
 
-TODO: Add a one- or two-sentence description of the portable garden project.
+A team-built automated portable spinach garden on a **Raspberry Pi Pico** (MicroPython), with STEMMA soil sensing, an LDR for ambient light, transistor-driven grow lights, and a water pump. Documented from the group logbook (February 2025–2026 build notes).
 
 **Category:** Electronics / Embedded Systems  
-**Status:** TODO: Update status (e.g. In progress, Completed, On hold)
+**Status:** Completed  
+**Logbook:** [documentation/portable_garden_Logbook.pdf](documentation/portable_garden_Logbook.pdf)
 
 ---
 
 ## Hero image
 
-<!-- TODO: Replace this placeholder with a real image after adding a file under images/.
-     Example: ![Project photo](images/hero.jpg)
-     Do not reference an image file that does not exist yet. -->
-
-> **Image placeholder:** Add a hero photo, prototype shot, or diagram to images/ and link it here.
+![3D-printed portable garden prototype parts](images/prototype-printed-parts.png)
 
 ---
 
 ## Overview
 
-TODO: Summarize the project goal, context (course, personal, team), and what problem it addresses.
+The goal was a compact, portable growing system for spinach with automated watering and supplemental lighting. The enclosure uses 3D-printed walls/roof, a polyethylene base, a bottle-style plant holder, and a printed showerhead. Electronics live on a breadboard with a Pico controlling:
+
+- **STEMMA soil sensor** (moisture + temperature over I2C)
+- **Photoresistor (LDR)** for darkness detection
+- **Grow lights** (GPIO → transistor)
+- **Water pump** (GPIO → transistor, 5 V supply with series potentiometer for flow)
+
+Plant targets from logbook research: full sun to partial shade (≈3–4 hours direct light), organically rich moist soil, frequent moderate watering (~139.7 mm/week equivalent guidance), and roughly **10–15 °C**.
 
 ---
 
 ## Project status
 
-TODO: Describe current status and major milestones reached. Do not invent dates or results.
-
 | Milestone | Status | Notes |
 |-----------|--------|-------|
-| TODO: Milestone name | TODO: Not started / In progress / Done | TODO: Notes |
+| Materials + pin map + spinach research | Done | Feb 7 |
+| First soil / light / pump sketches | Done | Feb 7 |
+| LDR integrated with grow lights | Done | Feb 10 |
+| Code bench tests + dimension updates | Done | Feb 13–14 |
+| Finalized firmware + assembly | Done | Feb 21 |
+| Presentation + project complete | Done | Feb 25–26 |
 
 ---
 
 ## My role
 
-TODO: Describe your responsibilities. If this was a team project, list what you personally owned.
-
-- TODO: Contribution 1
-- TODO: Contribution 2
-- TODO: Contribution 3
+Team project — update with your personal contributions (CAD, firmware, sensors, assembly, presentation).
 
 ---
 
 ## Features
 
-TODO: List only features that actually exist or are planned. Mark planned items clearly.
-
 ### Implemented
 
-- TODO: Feature
+- I2C STEMMA soil moisture + temperature monitoring
+- LDR-based grow-light control (up to 4 hours supplemental light per 24-hour window when dark)
+- Pump watering for 3 seconds when soil is very dry (moisture ≤ 450)
+- 3D-printed mechanical parts (shell, tray, center-tube base, plate / showerhead area)
+- Breadboard electronics housing for sensors and drivers
 
-### Planned
+### Planned / follow-ups
 
-- TODO: Planned feature
+- Commit CAD STEP/STL sources under `cad/`
+- Add schematic drawings under `schematics/` if available
+- Record calibrated LDR and moisture thresholds from real plants
 
 ---
 
 ## Hardware
 
-TODO: List major hardware components once finalized. Leave blank or keep TODO until verified.
+| Component | Purpose | Pins / notes |
+|-----------|---------|--------------|
+| Raspberry Pi Pico | Controller (MicroPython) | — |
+| STEMMA soil sensor | Moisture + temp | SDA 4, SCL 5 |
+| LDR (photoresistor) | Ambient light | ADC 28 |
+| Grow LEDs + transistor | Supplemental lighting | GPIO 15 |
+| Pump + transistor + pot | Irrigation flow | GPIO 16; pot sets flow |
+| 3D-printed enclosure / showerhead | Structure + watering head | See images |
+| Bottle / pipe plant holder + coffee filters | Growing medium support | Bottle ≈ 225 mm (Feb 14) |
+| Polyethylene base | Box floor | Box ≈ 145 mm (Feb 14) |
 
-| Component | Purpose | Notes |
-|-----------|---------|-------|
-| TODO: Part name | TODO: Role in system | TODO: Part number / source |
+Full materials list: [bom/bom.md](bom/bom.md)
 
 ---
 
 ## Software
 
-TODO: List languages, frameworks, firmware targets, and key libraries actually used.
+- **Language:** MicroPython on Raspberry Pi Pico  
+- **Libraries:** `stemma_soil_sensor`, `seesaw` (copy onto Pico)  
+- **Source:** [code/main.py](code/main.py) (final), [code/main_feb10_draft.py](code/main_feb10_draft.py) (earlier draft)  
+- Details: [code/README.md](code/README.md)
 
-- TODO: Language / toolchain
-- TODO: Libraries or frameworks
-- TODO: Flash / build method
+### Moisture logic (`main.py`)
+
+| Condition | Moisture reading | Action |
+|-----------|------------------|--------|
+| Optimal | > 950 | Pump off; long delay |
+| Dry | ≤ 950 and > 450 | Pump off; water later |
+| Very dry | ≤ 450 | Pump on 3 s, then off |
+
+Datasheet context from logbook: ~200 very dry → ~2000 very wet.
 
 ---
 
 ## Design tools
 
-TODO: List CAD, EDA, simulation, and documentation tools used (e.g. KiCad, Fusion 360, Altium).
-
-- TODO: Tool name — purpose
+- **3D printing** — enclosure, showerhead, and modular prototype parts  
+- **MicroPython / Raspberry Pi Pico** — control firmware  
+- CAD source tool: TODO (add Fusion 360 / SolidWorks files to `cad/` when available)
 
 ---
 
 ## System architecture
 
-TODO: Describe high-level blocks (power, sensing, control, actuation, UI, communications).
-
-`	ext
-TODO: Add a simple ASCII or Mermaid diagram of major subsystems and data/power flow.
-`
-
-Optional architecture diagram:
-
-<!-- TODO: Add diagram file under documentation/ or images/, then link it.
-     Example: ![Architecture](images/architecture.png) -->
-
-> **Diagram placeholder:** Add a system architecture diagram when available.
+```text
+                    ┌─────────────────┐
+   LDR (GP28) ─────►│                 │────► Grow lights (GP15 → transistor)
+                    │  Pi Pico        │
+ STEMMA I2C         │  MicroPython    │────► Pump (GP16 → transistor → 5 V)
+  SDA4 / SCL5 ─────►│                 │
+                    └─────────────────┘
+                              │
+                              ▼
+              Soil moisture + temperature
+                              │
+                              ▼
+                 Plant holder / soil / water store
+```
 
 ---
 
 ## Electrical design
 
-TODO: Summarize power distribution, protection, motor drivers, sensors, and connector strategy.
-
-- Schematics: see [schematics/](schematics/)
-- PCB: see [pcb/](pcb/)
-- BOM: see [om/](bom/)
-
-TODO: Add notes on notable design decisions once they are real (do not invent values).
+- Soil sensor on I2C0 (GPIO 4 / 5)
+- Grow light and pump each driven from a GPIO through a transistor
+- Pump powered from Pico 5 V with a series potentiometer for flow control
+- Schematics: add exports under [schematics/](schematics/) when available
+- BOM: [bom/bom.md](bom/bom.md)
 
 ---
 
 ## Software design
 
-TODO: Describe firmware/software structure, state machines, control loops, APIs, or message flows.
+Main loop in [code/main.py](code/main.py):
 
-- Source code: see [code/](code/)
-
-TODO: Note module names and responsibilities after the codebase is organized here.
+1. Read LDR and STEMMA moisture/temperature  
+2. Reset daily light timer every 24 hours  
+3. If dark and lights off → turn lights on and start 4-hour timer  
+4. If lights have been on ≥ 4 hours → turn off  
+5. Classify moisture and run/stop pump  
+6. Short CPU delay, repeat  
 
 ---
 
 ## Development process
 
-TODO: Outline how the project was developed (prototype → breadboard → PCB → integration → test).
-
-1. TODO: Phase 1
-2. TODO: Phase 2
-3. TODO: Phase 3
-
----
-
-## Challenges and debugging
-
-TODO: Document real debugging stories only. Use this structure for each issue:
-
-### Issue: TODO title
-
-- **Problem:** TODO
-- **Expected behaviour:** TODO
-- **How it was tested:** TODO
-- **What failed:** TODO
-- **What changed:** TODO
-- **What was learned:** TODO
+1. Feb 7 — Finalized plan, materials, spinach research, initial code flowchart and sketches  
+2. Feb 10 — Added photoresistor; merged light + soil + pump behaviour  
+3. Feb 13–14 — Tested code; recorded prototype dimensions (box 145 mm, bottle 225 mm)  
+4. Feb 21 — Finalized firmware comments; assembled components; presentation prep  
+5. Feb 25–26 — Full assembly; finished presentation; project complete  
 
 ---
 
 ## Testing and results
 
-TODO: Record test setups and outcomes in [	est-results/](test-results/). Do not invent measurements.
+See [test-results/notes.md](test-results/notes.md). Logbook records code bench tests (Feb 13) and final integration (Feb 21–26). Add measured values here when available.
 
-| Test | Method | Result | Date |
-|------|--------|--------|------|
-| TODO: Test name | TODO: How tested | TODO: Outcome | TODO: YYYY-MM-DD |
+---
 
-Photos, logs, and notes belong in 	est-results/ and images/.
+## Documentation
+
+| File | Description |
+|------|-------------|
+| [documentation/portable_garden_Logbook.pdf](documentation/portable_garden_Logbook.pdf) | Full group logbook |
+| [documentation/group-logbook-prototype-photo.png](documentation/group-logbook-prototype-photo.png) | Prototype printed parts photo |
+| [images/prototype-printed-parts.png](images/prototype-printed-parts.png) | Hero image |
 
 ---
 
 ## Repository structure
 
-`	ext
+```text
 portable-garden/
 ├── README.md
-├── code/              # Firmware and application source
-├── schematics/        # Schematic sources and exports
-├── pcb/               # PCB layout, Gerbers, fabrication outputs
-├── cad/               # Mechanical CAD and 3D models
-├── documentation/     # Design notes, reports, write-ups
-├── images/            # Photos and diagrams
-├── videos/            # Demo clips (prefer links for large files)
-├── bom/               # Bills of materials
-└── test-results/      # Test logs, tables, and observations
-`
+├── code/
+│   ├── README.md
+│   ├── main.py                 # Final firmware (Feb 21)
+│   └── main_feb10_draft.py     # Earlier draft
+├── schematics/
+├── pcb/
+├── cad/
+├── documentation/
+│   ├── portable_garden_Logbook.pdf
+│   └── group-logbook-prototype-photo.png
+├── images/
+│   └── prototype-printed-parts.png
+├── videos/
+├── bom/
+│   └── bom.md
+└── test-results/
+    └── notes.md
+```
 
 ---
 
 ## Future improvements
 
-- TODO: Improvement idea
-- TODO: Improvement idea
+- Export and commit CAD / STL files  
+- Draw and commit wiring schematics  
+- Calibrate `LDR_MAX` and moisture thresholds on real plants  
+- Replace long `time.sleep(100)` blocking delays with non-blocking timing if needed  
 
 ---
 
 ## Safety and limitations
 
-TODO: List known hazards, operating limits, and what this prototype is not designed to do.
-
-- TODO: Safety note
-- TODO: Limitation
+- Prototype / student project — not a commercial grow system  
+- Confirm materials are plant-safe before edible harvest  
+- Watch for leaks from 3D-printed water paths  
+- Pump and lights are transistor-switched loads — verify wiring before powering  
 
 ---
 
 ## Acknowledgements
 
-TODO: Credit teammates, instructors, open-source projects, and labs. Do not invent names.
-
-- TODO: Person or organization — contribution
+Group project — credit teammates by name only with their permission.
 
 ---
 
 ## License
 
-TODO: Choose a license for this project folder (or state that rights are reserved).  
-If the monorepo uses a root license, note how it applies here.
+Rights reserved unless a root repository license applies.

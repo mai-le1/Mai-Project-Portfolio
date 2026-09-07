@@ -1,45 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Khanh Mai Le | Electrical Engineering Portfolio{% endblock %}
+{% block title %}Mai Le | Electrical Engineering Portfolio{% endblock %}
 
 {% block content %}
 <section class="hero" id="top" aria-labelledby="hero-heading">
-  <div class="hero__grid">
-    <div class="hero__content">
-      <p class="eyebrow">Electrical Engineering Student</p>
-      <h1 id="hero-heading">Hi, I’m Khanh.</h1>
-      <p class="hero__lead">
-        I build embedded systems, electronic prototypes, and software tools
-        that connect hardware with real-world applications.
-      </p>
-      <div class="hero__actions">
-        <a class="btn btn--primary" href="#projects">View My Projects</a>
-        {# Replace GITHUB_URL in app.py with your GitHub profile URL #}
-        <a class="btn btn--ghost" href="{{ github_url }}" rel="noopener noreferrer">GitHub</a>
-        {# Replace RESUME_FILENAME in app.py and place the PDF in static/documents/ #}
-        <a
-          class="btn btn--ghost"
-          href="{{ url_for('static', filename='documents/' + resume_filename) }}"
-          download
-        >Download Resume</a>
-      </div>
-      <p class="hero__location">Calgary, Alberta · Seeking co-op in Metro Vancouver</p>
+  <div class="hero__inner">
+    <p class="eyebrow">Electrical Engineering Student</p>
+    <h1 id="hero-heading">Hi, I’m Mai.</h1>
+    <p class="hero__lead">
+      I build embedded systems, electronic prototypes, and software tools
+      that connect hardware with real-world applications.
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#projects">View My Projects</a>
+      <a class="btn btn--ghost" href="{{ github_url }}" rel="noopener noreferrer">GitHub</a>
+      <a
+        class="btn btn--ghost"
+        href="{{ url_for('static', filename='documents/' + resume_filename) }}"
+        download
+      >Download Resume</a>
     </div>
-    <div class="hero__visual" aria-hidden="true">
-      <div class="hero__panel">
-        <span class="hero__panel-label">Signal path</span>
-        <div class="hero__circuit">
-          <span class="node node--a"></span>
-          <span class="trace trace--h"></span>
-          <span class="node node--b"></span>
-          <span class="trace trace--v"></span>
-          <span class="node node--c"></span>
-          <span class="trace trace--h2"></span>
-          <span class="node node--d"></span>
-        </div>
-        <p class="hero__panel-caption">Hardware · Firmware · Software</p>
-      </div>
-    </div>
+    <p class="hero__location">Calgary, Alberta</p>
   </div>
 </section>
 
@@ -56,8 +37,7 @@
       <p>
         I enjoy turning ideas into functional prototypes — testing what fails,
         troubleshooting problems, and improving systems through multiple design
-        iterations. I am currently seeking an 8–16 month electrical engineering
-        co-op beginning January 2027 in Metro Vancouver.
+        iterations.
       </p>
     </div>
   </div>
@@ -76,8 +56,15 @@
     <div class="project-grid">
       {% for project in projects %}
       <article class="project-card">
-        <div class="project-card__media" aria-hidden="true">
-          <span class="image-placeholder">{{ project.image_placeholder }}</span>
+        <div class="project-card__media">
+          {% if project.image %}
+          <img
+            src="{{ url_for('static', filename='images/' + project.image) }}"
+            alt="{{ project.title }}"
+          >
+          {% else %}
+          <span class="image-placeholder" aria-hidden="true">Photo coming soon</span>
+          {% endif %}
         </div>
         <div class="project-card__body">
           <p class="project-card__category">{{ project.category }}</p>
@@ -129,17 +116,13 @@
 
 <section class="section contact" id="contact" aria-labelledby="contact-heading">
   <div class="section__inner contact__inner">
-    <p class="eyebrow">Contact</p>
-    <h2 id="contact-heading">Let’s build something useful.</h2>
-    <p class="contact__text">
-      I am currently looking for an 8–16 month electrical engineering co-op
-      beginning January 2027 in Metro Vancouver.
-    </p>
-    <div class="contact__actions">
-      <a class="btn btn--primary" href="mailto:sarahlebics@gmail.com">Email Me</a>
-      <a class="btn btn--ghost" href="{{ linkedin_url }}" rel="noopener noreferrer">LinkedIn</a>
-      <a class="btn btn--ghost" href="{{ github_url }}" rel="noopener noreferrer">GitHub</a>
-    </div>
+    <h2 id="contact-heading">Contact</h2>
+    <ul class="contact__list">
+      <li><strong>Email:</strong> <a href="mailto:sarahlebics@gmail.com">sarahlebics@gmail.com</a></li>
+      <li><strong>Location:</strong> Calgary, Alberta</li>
+      <li><strong>LinkedIn:</strong> <a href="{{ linkedin_url }}" rel="noopener noreferrer">linkedin.com/in/khanh-mai-le-a5984b388</a></li>
+      <li><strong>GitHub:</strong> <a href="{{ github_url }}" rel="noopener noreferrer">github.com/mai-le1</a></li>
+    </ul>
   </div>
 </section>
 {% endblock %}

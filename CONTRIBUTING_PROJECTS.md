@@ -39,7 +39,7 @@ The portfolio website (`app.py`, `templates/`, `static/`) and the `projects/` do
 5. Add a row to the correct table in the root [`README.md`](README.md):
 
    - **Featured engineering projects** or **Additional projects**
-   - Include project name, technical category, status, and relative README link
+   - Include project name, technical category, and relative README link
 
 6. If the project is featured, add an entry to the `PROJECTS` list in `app.py` so it appears on the website.
 

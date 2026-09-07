@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{% block meta_description %}Khanh Mai Le — Electrical Engineering student portfolio. Embedded systems, PCB design, motor control, and AI software. Seeking co-op opportunities in Metro Vancouver.{% endblock %}">
-  <title>{% block title %}Khanh Mai Le | Electrical Engineering Portfolio{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Mai Le — Electrical Engineering student portfolio. Embedded systems, PCB design, motor control, and AI software.{% endblock %}">
+  <title>{% block title %}Mai Le | Electrical Engineering Portfolio{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -12,7 +12,7 @@
 
   <header class="site-header">
     <nav class="nav" aria-label="Primary">
-      <a class="nav__logo" href="{{ url_for('index') }}#top" aria-label="Khanh Mai Le home">KML</a>
+      <a class="nav__logo" href="{{ url_for('index') }}#top" aria-label="Mai Le home">ML</a>
 
       <button
         class="nav__toggle"
@@ -40,14 +40,14 @@
 
   <footer class="site-footer">
     <div class="footer__inner">
-      <p class="footer__brand">KML — Khanh Mai Le</p>
+      <p class="footer__brand">ML — Mai Le</p>
       <p class="footer__meta">Electrical Engineering Student · Calgary, Alberta</p>
       <p class="footer__links">
         <a href="mailto:sarahlebics@gmail.com">Email</a>
         <a href="{{ linkedin_url }}" rel="noopener noreferrer">LinkedIn</a>
         <a href="{{ github_url }}" rel="noopener noreferrer">GitHub</a>
       </p>
-      <p class="footer__copy">&copy; 2026 Khanh Mai Le</p>
+      <p class="footer__copy">&copy; 2026 Mai Le</p>
     </div>
   </footer>
 
