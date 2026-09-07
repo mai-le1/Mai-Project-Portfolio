@@ -2,19 +2,19 @@
 
 Personal engineering portfolio and project documentation monorepo for **Khanh Mai Le**.
 
-Khanh is an Electrical Engineering student at the University of Calgary, seeking an **8–16 month co-op beginning January 2027 in Metro Vancouver**.
+I am an Electrical Engineering student at the University of Calgary.
 
-This repository contains:
+What this repository contains:
 
 1. A **Flask portfolio website** (homepage, project pages, skills, contact)
-2. A **`projects/`** documentation tree for featured engineering builds
-3. An **`projects/additional-projects/`** folder for secondary builds
+2. A **`projects/`** documentation tree for featured engineering projects (University + Personal)
+3. An **`projects/additional-projects/`** folder for smaller fun projects
 
 ---
 
 ## About
 
-I build embedded systems, electronic prototypes, and software tools that connect hardware with real-world applications. Experience areas include PCB design, embedded programming, motor control, circuit prototyping, CAD, and AI-powered software development.
+I am a third-year Electrical Engineering student who enjoys turning ideas into real, working systems. I am especially interested in hands-on design, embedded systems, and software that connects hardware with real-world applications. My main areas of interest include electrical system design, custom PCB development, embedded programming, and hardware-software integration.
 
 **Location:** Calgary, Alberta  
 **Email:** sarahlebics@gmail.com
@@ -25,10 +25,10 @@ I build embedded systems, electronic prototypes, and software tools that connect
 
 | Project | Category | Status | Documentation |
 |---------|----------|--------|---------------|
-| Autonomous Delivery System | Embedded Systems / Robotics | TODO: Update status | [README](projects/autonomous-delivery-system/README.md) |
-| Heartbeat LED PCB | PCB Design / Electronics | Completed | [README](projects/led-heart-pcb/README.md) |
-| ESP32-Based Quadcopter Drone | Embedded Systems / Power Electronics | In progress | [README](projects/personal-drone/README.md) |
-| Remote-Controlled Metal Detection Vehicle | Embedded Systems / Sensing | Completed | [README](projects/metal-detecting-remote-car/README.md) |
+| Autonomous Delivery System | Embedded Systems / Robotics | [README](projects/autonomous-delivery-system/README.md) |
+| Heartbeat LED PCB | PCB Design / Electronics | [README](projects/led-heart-pcb/README.md) |
+| ESP32-Based Quadcopter Drone | Embedded Systems / Power Electronics | [README](projects/personal-drone/README.md) |
+| Remote-Controlled Metal Detection Vehicle | Embedded Systems / Sensing | [README](projects/metal-detecting-remote-car/README.md) |
 
 ---
 
@@ -36,12 +36,9 @@ I build embedded systems, electronic prototypes, and software tools that connect
 
 | Project | Category | Status | Documentation |
 |---------|----------|--------|---------------|
-| Portable Garden | Electronics / Embedded Systems | TODO: Update status | [README](projects/additional-projects/portable-garden/README.md) |
-| Dual-Mode Autonomous and Remote-Controlled Vehicle | Embedded Systems / Mechatronics | TODO: Update status | [README](projects/additional-projects/autonomous-remote-car/README.md) |
+| Portable Garden | Electronics / Embedded Systems| [README](projects/additional-projects/portable-garden/README.md) |
 | Walkie-Talkie | Electronics / Communications | TODO: Update status | [README](projects/additional-projects/walkie-talkie/README.md) |
-| AI Booking and Customer Service Agent | AI and Software Development | TODO: Update status | [README](projects/additional-projects/ai-booking-agent/README.md) |
-
-For how to add projects, organize files, and document work, see [CONTRIBUTING_PROJECTS.md](CONTRIBUTING_PROJECTS.md).
+| AI Booking and Customer Service Agent | AI and Software Development | [README](projects/additional-projects/ai-booking-agent/README.md) |
 
 ---
 
@@ -97,19 +94,7 @@ python app.py
 
 Open [http://127.0.0.1:5000](http://127.0.0.1:5000).
 
-### Replace website placeholders
 
-In `app.py`:
-
-```python
-GITHUB_URL = "YOUR_GITHUB_URL"
-LINKEDIN_URL = "YOUR_LINKEDIN_URL"
-RESUME_FILENAME = "YOUR_RESUME_FILENAME"
-```
-
-Place a resume PDF in `static/documents/` after updating `RESUME_FILENAME`.
-
-Copy `.env.example` to `.env` for any local secrets — never commit `.env`.
 
 ### Deploy on Render
 
